@@ -6,7 +6,7 @@ import numpy as np
 import pickle
 
 from sklearn.svm import SVC, LinearSVC
-from sklearn.grid_search import GridSearchCV
+from sklearn.model_selection import GridSearchCV
 from antispoofing.mcnns.utils import *
 from antispoofing.mcnns.classification.baseclassifier import BaseClassifier
 
@@ -61,10 +61,10 @@ class LinearSVM(BaseClassifier):
 
             print('-- training ...')
             sys.stdout.flush()
-            self.model.fit(x_train.reshape(newshape) , y_train)
+            self.model.fit(x_train.reshape(newshape), y_train)
 
             # -- save the model
-            with open(self.output_model,'wb') as pf:
+            with open(self.output_model, 'wb') as pf:
                 pickle.dump(self.model, pf)
 
     def predict(self, x_values):
@@ -78,7 +78,6 @@ class LinearSVM(BaseClassifier):
         new_preds = self.model.predict(x_values.reshape(newshape))
 
         return np.array(new_preds)
-
 
     def testing(self, x_test, y_test):
 
@@ -103,10 +102,9 @@ class LinearSVM(BaseClassifier):
 
             # -- define the output dictionary
             outputs = {'gt': y_test,
-                    'predicted_labels': new_preds,
-                    'predicted_scores': new_scores,
-                    }
-
+                       'predicted_labels': new_preds,
+                       'predicted_scores': new_scores,
+                       }
 
         else:
             sys.exit('-- model not found! Please, execute training again!')

@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 
-import os
-import sys
-import time
 import argparse
-
-from antispoofing.mcnns.utils import *
-from antispoofing.mcnns.datasets import *
-from antispoofing.mcnns.controller import *
+import time
+import sys
+import os
 from antispoofing.mcnns.classification import *
+from antispoofing.mcnns.controller import *
+from antispoofing.mcnns.datasets import *
+from antispoofing.mcnns.utils import *
+sys.path.append("/content/emvlc-ipad/")
 
 
 def call_controller(args):
@@ -23,7 +23,7 @@ def call_controller(args):
                    operation=args.operation,
                    max_axis=args.max_axis,
                    augmentation=args.augmentation,
-                   transform_vgg= (args.ml_algo == 5),
+                   transform_vgg=(args.ml_algo == 5),
                    )
 
     data.output_path = os.path.join(args.output_path,
@@ -55,7 +55,8 @@ def main():
         optimizer_methods_options += ('%s-%s, ' % (k, optimizer_methods[k]))
 
     # -- define the arguments available in the command line execution
-    parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.RawTextHelpFormatter)
 
     # -- arguments related to the dataset and to the output
     group_a = parser.add_argument_group('Arguments')
@@ -82,7 +83,8 @@ def main():
                          help='Apply augmentation to training data.')
 
     # -- arguments related to the Feature extraction module
-    group_b = parser.add_argument_group('Available Parameters for Feature Extraction')
+    group_b = parser.add_argument_group(
+        'Available Parameters for Feature Extraction')
 
     group_b.add_argument('--feature_extraction', action='store_true',
                          help='Execute the feature extraction process (default=%(default)s).')
@@ -95,7 +97,8 @@ def main():
                          help="Additional parameters for feature extraction.")
 
     # -- arguments related to the Classification module
-    group_c = parser.add_argument_group('Available Parameters for Classification')
+    group_c = parser.add_argument_group(
+        'Available Parameters for Classification')
 
     group_c.add_argument('--classification', action='store_true',
                          help='Execute the classification process (default=%(default)s).')
@@ -150,13 +153,13 @@ def main():
     deprecated = parser.add_argument_group('Deprecated arguments')
 
     deprecated.add_argument('--last_layer', type=str, metavar='', default='linear', choices=['linear', 'softmax'],
-                         help='(default=%(default)s).')
+                            help='(default=%(default)s).')
 
     deprecated.add_argument('--layers_name', nargs='+', type=str, metavar='', default=['conv_1'],
-                         help='(default=%(default)s).')
+                            help='(default=%(default)s).')
 
     deprecated.add_argument('--fv', action='store_true',
-                         help='(default=%(default)s).')
+                            help='(default=%(default)s).')
 
     args = parser.parse_args()
 
@@ -172,5 +175,6 @@ if __name__ == "__main__":
     main()
 
     elapsed = (time.time() - start)
-    print('Total time elaposed: {0}!'.format(time.strftime("%d days, and %Hh:%Mm:%Ss", time.gmtime(elapsed))))
+    print('Total time elaposed: {0}!'.format(time.strftime(
+        "%d days, and %Hh:%Mm:%Ss", time.gmtime(elapsed))))
     sys.stdout.flush()
