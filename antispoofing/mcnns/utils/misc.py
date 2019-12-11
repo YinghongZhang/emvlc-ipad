@@ -555,7 +555,7 @@ def to_vgg_shape(img, dtype=np.float32):
         rsim = rsim[...,0]
     return rsim.astype(dtype)
 
-def load_images(fnames, channel=1, dsname='default', tmppath='/scratch365/akuehlka/mcnns_tmp',
+def load_images(fnames, channel=1, dsname='default', tmppath='scratch365/akuehlka/mcnns_tmp',
                 segmentation_data=(), transform_vgg=False):
     print('-- loading raw images ...')
     sys.stdout.flush()
@@ -576,6 +576,7 @@ def load_images(fnames, channel=1, dsname='default', tmppath='/scratch365/akuehl
     # create a pytables file to contain all images
     # this way we'll be able to work with datasets that don't fit into the memory
     # based on https://kastnerkyle.github.io/posts/using-pytables-for-larger-than-ram-data-processing/
+    tmppath='scratch365/akuehlka/mcnns_tmp'
     hdf5_path = '{}/{}.hdf5'.format(tmppath, fname)
     hdf5_lock = '{}/{}.lock'.format(tmppath, fname)
     if not os.path.exists(hdf5_path):
