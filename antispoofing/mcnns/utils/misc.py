@@ -611,9 +611,9 @@ def load_images(fnames, channel=1, dsname='default', tmppath='scratch365/akuehlk
         os.system('rm ' + hdf5_lock)
 
     # check for lock file/wait
-    while os.path.exists(hdf5_lock):
-        print("Waiting for lock release...")
-        time.sleep(5)
+    # while os.path.exists(hdf5_lock):
+    #     print("Waiting for lock release...")
+    #     time.sleep(5)
     data_storage = tables.open_file(hdf5_path, mode='r')
 
     return data_storage.root.imgs, iris_data, iris_map
