@@ -1,17 +1,15 @@
 # -*- coding: utf-8 -*-
 
 
-
+import os
+import sys
+import time
+import argparse
 sys.path.append("/content/emvlc-ipad/")
 from antispoofing.mcnns.utils import *
 from antispoofing.mcnns.datasets import *
 from antispoofing.mcnns.controller import *
 from antispoofing.mcnns.classification import *
-import os
-import sys
-import time
-import argparse
-
 
 
 def call_controller(args):
