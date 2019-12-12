@@ -605,6 +605,8 @@ def load_images(fnames, channel=1, dsname='default', tmppath='scratch365/akuehlk
                     # resize the image to fit the current size, considering segmentation info
                     img, iris_data, iris_map = resizeProp(img, data_storage.shape[1:4], fname,
                                                         segmentation_data=segmentation_data)
+                    img = np.expand_dims(img, 2)
+            
             data_storage.append(img[np.newaxis, ...])
 
         hdf5_file.close()
