@@ -65,6 +65,11 @@ class LivDetIIITD(Dataset):
             delimiter=',',
             remove_header=True)
 
+        # 6249
+        liv_det_train_data = liv_det_train_data[:6000]
+        # 4209
+        liv_det_test_data = liv_det_test_data[:1000]
+
         # if self.augmentation:
         #     train_data_tmp = liv_det_train_data.copy().tolist()
         #

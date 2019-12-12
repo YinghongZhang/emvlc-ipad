@@ -10,7 +10,10 @@ from antispoofing.mcnns.utils import *
 from antispoofing.mcnns.datasets import *
 from antispoofing.mcnns.controller import *
 from antispoofing.mcnns.classification import *
-
+import tensorflow
+import keras
+print(tensorflow.__version__)
+print(keras.__version__)
 
 def call_controller(args):
 
