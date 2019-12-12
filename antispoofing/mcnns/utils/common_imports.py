@@ -2,7 +2,7 @@
 from antispoofing.mcnns.utils.constants import SEED
 
 import tensorflow as tf
-tf.random.set_seed(SEED)
+tf.set_random_seed(SEED)
 
 import numpy as np
 import matplotlib.pyplot as plt
