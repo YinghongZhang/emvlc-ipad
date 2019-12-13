@@ -61,7 +61,7 @@ class CNN(BaseClassifier):
 
             K.clear_session()
             gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.95, allow_growth=True, allocator_type='BFC')
-            K.set_session(K.tf.Session(config=K.tf.ConfigProto(gpu_options=gpu_options,
+            K.set_session(tf.Session(config=tf.ConfigProto(gpu_options=gpu_options,
                                                                allow_soft_placement=True,
                                                                log_device_placement=True)))
 
