@@ -15,6 +15,7 @@ from antispoofing.mcnns.utils import *
 from antispoofing.mcnns.measure import *
 from sklearn import metrics
 from itertools import zip_longest
+from scipy.stats import norm
 
 
 class BaseClassifier(metaclass=ABCMeta):
@@ -111,9 +112,9 @@ class BaseClassifier(metaclass=ABCMeta):
                                        label='Positive class')
 
         # -- add a line showing the expected distribution
-        y = mlab.normpdf(bins, np.mean(neg_scores), np.std(neg_scores))
+        y = norm.pdf(bins, np.mean(neg_scores), np.std(neg_scores))
         _ = plt.plot(bins, y, 'k--', linewidth=1.5)
-        y = mlab.normpdf(binsa, np.mean(pos_scores), np.std(pos_scores))
+        y = norm.pdf(binsa, np.mean(pos_scores), np.std(pos_scores))
         _ = plt.plot(binsa, y, 'k--', linewidth=1.5)
 
         for thr_type, thr_value in thresholds:
